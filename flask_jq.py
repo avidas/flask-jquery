@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template, request
 app = Flask(__name__)
 
+#TODO test json-p with ajax
 
 @app.route('/_add_numbers')
 def add_numbers():
