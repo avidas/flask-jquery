@@ -2,6 +2,7 @@
 {% block body %}
 <script type=text/javascript>
   $(function() {
+    console.log($SCRIPT_ROOT);
     var submit_form = function(e) {
       $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
         a: $('input[name="a"]').val(),
