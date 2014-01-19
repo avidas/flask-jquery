@@ -4,8 +4,6 @@ import json
 
 app = Flask(__name__)
 
-#TODO test json-p with ajax
-
 def jsonp(f):
 	'''Wrap JSONified output for JSONP'''
 	@wraps(f)
@@ -25,6 +23,7 @@ def test():
     return jsonify({"foo":"bar"})
 
 @app.route('/_add_numbers')
+@jsonp
 def add_numbers():
     ''' Because numbers must be added server side '''
     a = request.args.get('a', 0, type=int)
