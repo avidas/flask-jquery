@@ -1,11 +1,16 @@
 {% extends "layout.html" %}
+{% set title = 'Add' %}
 {% block body %}
-<script src="static/js/add.js">
-</script>
-<h1>jQuery Example</h1>
-<p>
-  <input type=text size=5 name=a> +
-  <input type=text size=5 name=b> =
-  <span id=result>?</span>
-<p><a href=# id=calculate>calculate server side</a>
+<script src="static/js/add.js"></script>
+<script src="static/js/ui.js"></script>
+<div id="calculator">
+	<h1>jQuery Example</h1>
+
+	<p>
+  		<input type=text size=5 name=a> +
+  		<input type=text size=5 name=b> =
+  		<span id=result>?</span>
+	</p>
+	<a href=# id=calculate>calculate server side</a>
+<div>
 {% endblock %}
