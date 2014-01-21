@@ -1,4 +1,6 @@
 $(document).ready(function () {
+	$("#calculator").hide().fadeIn(1000);
+
 	$("#calculator").draggable();
 
 	$("#calculator").dblclick(function(){
