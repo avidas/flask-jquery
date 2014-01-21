@@ -2,7 +2,8 @@ $(document).ready(function () {
 	$("#calculator").draggable();
 
 	$("#calculator").dblclick(function(){
-        $(this).html("<h1>42</h1>");
+        $(this).html("<h1>42</h1>").fadeOut( 1000 );
+
     });
 
     $(document).keydown(function(key) {
