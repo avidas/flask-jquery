@@ -1,5 +1,16 @@
 div {
 	background-color: #CEF6F5;
+}
+
+.calculator {
 	font-family: monospace;
 	text-transform: capitalize;
+	margin-left: 10em;
+	margin-right: 10em;
+	padding: 2em;
+	border: 1px dashed orange;
+}
+
+.hover_emp {
+	background-color: #00FF00;
 }
