@@ -14,6 +14,6 @@ div {
 .hover_emp {
 	background-color: #00FF00;
 	border-radius:50%;
-	-webkit-animation: rotate 2s linear infinite;
-  	animation: rotate 2s linear infinite;
+	-webkit-animation: rotate 6s linear infinite;
+  	animation: rotate 6s linear infinite;
 }
