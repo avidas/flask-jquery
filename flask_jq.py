@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request, current_app, redirect
+from flask import Flask, jsonify, render_template, request, current_app, redirect, flash
 from functools import wraps
 import json
 
@@ -20,6 +20,7 @@ def jsonp(f):
 @app.route('/test', methods=['GET'])
 @jsonp
 def test():
+    flash('Previous', category='info')
     return jsonify({"foo":"bar"})
 
 @app.route('/_add_numbers')
