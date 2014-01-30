@@ -24,8 +24,7 @@ def test():
     return jsonify({"foo":"bar"})
 
 @app.route('/comment', methods=['GET'])
-@jsonp
-def test():
+def comment():
     return render_template('dom_edit.html')
 
 @app.route('/_add_numbers')
