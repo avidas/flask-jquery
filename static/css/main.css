@@ -14,3 +14,7 @@ div {
 .hover_emp {
 	background-color: #C9F600;
 }
+
+.comment {
+	visibility: hidden;
+}
