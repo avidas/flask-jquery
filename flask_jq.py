@@ -23,6 +23,11 @@ def test():
     flash('Previous', category='info')
     return jsonify({"foo":"bar"})
 
+@app.route('/comment', methods=['GET'])
+@jsonp
+def test():
+    return render_template('dom_edit.html')
+
 @app.route('/_add_numbers')
 @jsonp
 def add_numbers():
