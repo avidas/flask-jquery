@@ -1,9 +1,11 @@
 $(document).ready(function () {
 
-	$(" div ").hover(function(){
-		$(this).addClass("hover_emp");
+	$(" .container ").hover(function(){
+		$(this).addClass("hover_emp");	
+		$(this).append("<p class='prompt'>Just a paragraph.</p>");
 	}, function() {
 		$(this).removeClass("hover_emp");
+		$('p').remove(".prompt");
 	});
 
 	$(".calculator").hide().fadeIn(1000);
@@ -12,8 +14,8 @@ $(document).ready(function () {
 
 	$(".calculator").dblclick(function(){
         $(this).html("<h1>42</h1>").fadeOut( 1000 );
-
     });
+
 
     $(document).keydown(function(key) {
         switch(parseInt(key.which,10)) {
