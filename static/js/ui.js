@@ -11,11 +11,22 @@ $(document).ready(function () {
 	$('p').click(function() {
 		//$(this).append( $("#comment") ).css('visibility: visible');
 		$(this).append("<div id='tooltip'><input type='text' name='comment' />");
-		var toAdd = $('input[name=comment]').val();
-		$('p').append('<div class="item">' + toAdd + '</div>');
+		$(this).unbind('click');
+
 		//<input type='button' value='Insert' />
 		//$('#tooltip').css({'position': 'absolute', 'top': $('p').position().top + 'px', 'left': $('p').position().left + 'px'});
 	});
+
+	$(document).keypress(function(e) {
+    	if(e.which == 13) {
+        	var toAdd = $('input[name=comment]').val();
+			$('p').append('<div class="item">' + toAdd + '</div>');
+    	}
+	});
+
+	$(document).on('click','.item', function() {
+        $(this).remove();
+    });
 
 
 	$(".calculator").hide().fadeIn(1000);
