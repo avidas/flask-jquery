@@ -23,9 +23,13 @@ def test():
     flash('Previous', category='info')
     return jsonify({"foo":"bar"})
 
-@app.route('/comment', methods=['GET'])
-def comment():
+@app.route('/dom', methods=['GET'])
+def dom():
     return render_template('dom_edit.html')
+
+@app.route('/snake', methods=['GET'])
+def snake():
+    return render_template('snake.html')
 
 @app.route('/_add_numbers')
 @jsonp
