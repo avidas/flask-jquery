@@ -11,6 +11,7 @@ $(document).ready(function () {
 	$('p').click(function() {
 		//$(this).append( $("#comment") ).css('visibility: visible');
 		$(this).append("<div id='tooltip'><input type='text' name='comment' />");
+		$(this).append("<form method='post'>Comments:<br /><textarea name='comments' id='comments'>Hey... say something!</textarea><br /><input type='submit' value='Submit' /></form>")
 		$(this).unbind('click');
 
 		//<input type='button' value='Insert' />
