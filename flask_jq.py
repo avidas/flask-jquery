@@ -29,6 +29,9 @@ def dom():
 
 @app.route('/snake', methods=['GET'])
 def snake():
+    """
+    Make a snake game
+    """
     return render_template('snake.html')
 
 @app.route('/_add_numbers')
