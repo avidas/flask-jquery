@@ -5,6 +5,9 @@ $(document).ready(function(){
 	var w = $("#canvas").width();
 	var h = $("#canvas").height();
 	
-	ctx.fillStyle = "blue";
+	ctx.fillStyle = "white";
+	ctx.fillRect(0, 0, w, h);
+	ctx.strokeStyle = "black";
+	ctx.strokeRect(0, 0, w, h);
 
 })
