@@ -10,12 +10,7 @@ $(document).ready(function(){
 
 	var fw = Math.floor((Math.random()*w/10)+1);
 	var fh = Math.floor((Math.random()*h/10)+1);
-
-	//Draw canvas
-	ctx.fillStyle = "white";
-	ctx.fillRect(0, 0, w, h);
-	ctx.strokeStyle = "black";
-	ctx.strokeRect(0, 0, w, h);
+	var handle = 0;
 
 	function paint_cell(x,y)
 	{
@@ -39,6 +34,7 @@ $(document).ready(function(){
 
 	function draw_snake()
 	{
+
 		//console.log(snake.length);
 		//console.log(snake);
 		for(var i = snake.length-1; i >= 0; i--)
@@ -55,39 +51,52 @@ $(document).ready(function(){
 		ctx.strokeStyle = "black";
 		ctx.strokeRect(0, 0, w, h);
 
+		make_food();
+
 		//console.log(snake[snake.length-1].x,snake[snake.length-1].y);
 		snake.shift();
 		//console.log("this ", snake[snake.length-1].x + 1, snake[snake.length-1].y)
 		//paint_cell(snake[snake.length-1].x + 1, snake[snake.length-1].y)
 
-		
 		snake.push({x: snake[snake.length-1].x + 1, y: snake[snake.length-1].y});
-		make_food();
-		draw_snake();
+		if (snake[snake.length-1].x + 1 >= w/cw || snake[snake.length-1].y + 1 >= h/cw)
+		{
+			clearInterval(handle);
+			game();
+		}
+		else {
+			draw_snake();
+		}
+		
+
 	}
 
 
 	function game()
 	{
+			//Draw canvas
+		ctx.fillStyle = "white";
+		ctx.fillRect(0, 0, w, h);
+		ctx.strokeStyle = "black";
+		ctx.strokeRect(0, 0, w, h);
+
+		snake = [];
 		make_snake();
-		
+		/*
 		if (snake[snake.length-1].x >= w)
 		{
 			clearInterval();
 			game();
-		}
-		var handle = setInterval(game_logic, 500);
+		}*/
+		handle = setInterval(game_logic, 50);
 
 	}
 	game();
     
     function make_food(is_new)
     {
-    	console.log(fw);
         fw = typeof is_new !== 'undefined' ? Math.floor((Math.random()*w/10)+1) : fw;
-        console.log("here " + fw);
         fh = typeof is_new !== 'undefined' ? Math.floor((Math.random()*h/10)+1) : fh;
-        //console.log(fw,fh);
         paint_cell(fw,fh);
     }
 
