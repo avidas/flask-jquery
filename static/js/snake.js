@@ -41,7 +41,7 @@ $(document).ready(function(){
 		//console.log(snake);
 		for(var i = snake.length-1; i >= 0; i--)
 		{
-			console.log(snake[i]);
+			//console.log(snake[i]);
 			paint_cell(snake[i].x,snake[i].y);
 		}
 	}
@@ -53,10 +53,8 @@ $(document).ready(function(){
 		ctx.strokeStyle = "black";
 		ctx.strokeRect(0, 0, w, h);
 
-		make_food();
-
 		//console.log(snake[snake.length-1].x,snake[snake.length-1].y);
-		snake.shift();
+
 		//console.log("this ", snake[snake.length-1].x + 1, snake[snake.length-1].y)
 		//paint_cell(snake[snake.length-1].x + 1, snake[snake.length-1].y)
 		if (dir==="right") {
@@ -81,8 +79,15 @@ $(document).ready(function(){
 			clearInterval(handle);
 			game();
 		}
+		else if (new_pos_x===fw && new_pos_y===fh)
+		{
+			make_food(true);
+			snake.push({x: new_pos_x, y: new_pos_y});
+			draw_snake();
+		}
 		else {
-
+			make_food();
+			snake.shift();
 			snake.push({x: new_pos_x, y: new_pos_y});
 			draw_snake();
 		}
@@ -119,7 +124,6 @@ $(document).ready(function(){
     }
 
     $(document).keydown(function(e){
-    	console.log(e.keyCode);
     	if (e.keyCode===37 && dir!=="right") dir="left";
     	if (e.keyCode===38 && dir!=="down") dir="up";
     	if (e.keyCode===39 && dir!=="left") dir="right";
