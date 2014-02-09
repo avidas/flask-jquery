@@ -17,7 +17,6 @@ $(document).ready(function(){
 	function paint_cell(x,y)
 	{
 		ctx.fillStyle = "blue";
-		//console.log(x,y);
 		ctx.fillRect(x*cw, y*cw, cw, cw);
 		ctx.strokeStyle = "white";
 		ctx.strokeRect(x*cw, y*cw, cw, cw);
@@ -36,14 +35,19 @@ $(document).ready(function(){
 
 	function draw_snake()
 	{
-
-		//console.log(snake.length);
-		//console.log(snake);
 		for(var i = snake.length-1; i >= 0; i--)
 		{
-			//console.log(snake[i]);
 			paint_cell(snake[i].x,snake[i].y);
 		}
+	}
+
+	function if_collide_self(x,y){
+		for(var i = 0; i<snake.length;i++){
+			if (x===snake[i].x && y===snake[i].y){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	function game_logic()
@@ -53,10 +57,6 @@ $(document).ready(function(){
 		ctx.strokeStyle = "black";
 		ctx.strokeRect(0, 0, w, h);
 
-		//console.log(snake[snake.length-1].x,snake[snake.length-1].y);
-
-		//console.log("this ", snake[snake.length-1].x + 1, snake[snake.length-1].y)
-		//paint_cell(snake[snake.length-1].x + 1, snake[snake.length-1].y)
 		if (dir==="right") {
 			new_pos_x = snake[snake.length-1].x +1;
 			new_pos_y = snake[snake.length-1].y;
@@ -74,7 +74,7 @@ $(document).ready(function(){
 			new_pos_y = snake[snake.length-1].y+1;				
 		}
 		
-		if (new_pos_x > w/cw || new_pos_y > h/cw || new_pos_x < 0 || new_pos_y < 0)
+		if (new_pos_x > w/cw || new_pos_y > h/cw || new_pos_x < 0 || new_pos_y < 0 || if_collide_self(new_pos_x,new_pos_y))
 		{
 			clearInterval(handle);
 			game();
@@ -96,7 +96,7 @@ $(document).ready(function(){
 
 	function game()
 	{
-			//Draw canvas
+		//Draw canvas
 		ctx.fillStyle = "white";
 		ctx.fillRect(0, 0, w, h);
 		ctx.strokeStyle = "black";
@@ -105,12 +105,6 @@ $(document).ready(function(){
 		snake = [];
 		dir = "right";
 		make_snake();
-		/*
-		if (snake[snake.length-1].x >= w)
-		{
-			clearInterval();
-			game();
-		}*/
 		handle = setInterval(game_logic, 50);
 
 	}
