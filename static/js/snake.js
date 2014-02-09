@@ -12,6 +12,8 @@ $(document).ready(function(){
 	var fh = Math.floor((Math.random()*h/10)+1);
 	var handle = 0;
 
+	var dir = "up";
+
 	function paint_cell(x,y)
 	{
 		ctx.fillStyle = "blue";
@@ -57,18 +59,33 @@ $(document).ready(function(){
 		snake.shift();
 		//console.log("this ", snake[snake.length-1].x + 1, snake[snake.length-1].y)
 		//paint_cell(snake[snake.length-1].x + 1, snake[snake.length-1].y)
-
-		snake.push({x: snake[snake.length-1].x + 1, y: snake[snake.length-1].y});
-		if (snake[snake.length-1].x + 1 >= w/cw || snake[snake.length-1].y + 1 >= h/cw)
+		if (dir==="right") {
+			new_pos_x = snake[snake.length-1].x +1;
+			new_pos_y = snake[snake.length-1].y;
+		}
+		else if (dir==="left") {
+			new_pos_x = snake[snake.length-1].x - 1;
+			new_pos_y = snake[snake.length-1].y;
+		}
+		else if (dir==="up") {
+			new_pos_x = snake[snake.length-1].x;
+			new_pos_y = snake[snake.length-1].y+1;			
+		}
+		else if (dir==="down") {
+			new_pos_x = snake[snake.length-1].x;
+			new_pos_y = snake[snake.length-1].y-1;				
+		}
+		
+		if (new_pos_x > w/cw || new_pos_y > h/cw || new_pos_x < 0 || new_pos_y < 0)
 		{
 			clearInterval(handle);
 			game();
 		}
 		else {
+
+			snake.push({x: new_pos_x, y: new_pos_y});
 			draw_snake();
 		}
-		
-
 	}
 
 
