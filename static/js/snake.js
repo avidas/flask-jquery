@@ -12,7 +12,7 @@ $(document).ready(function(){
 	var fh = Math.floor((Math.random()*h/10)+1);
 	var handle = 0;
 
-	var dir = "up";
+	var dir = "right";
 
 	function paint_cell(x,y)
 	{
@@ -69,11 +69,11 @@ $(document).ready(function(){
 		}
 		else if (dir==="up") {
 			new_pos_x = snake[snake.length-1].x;
-			new_pos_y = snake[snake.length-1].y+1;			
+			new_pos_y = snake[snake.length-1].y-1;			
 		}
 		else if (dir==="down") {
 			new_pos_x = snake[snake.length-1].x;
-			new_pos_y = snake[snake.length-1].y-1;				
+			new_pos_y = snake[snake.length-1].y+1;				
 		}
 		
 		if (new_pos_x > w/cw || new_pos_y > h/cw || new_pos_x < 0 || new_pos_y < 0)
@@ -98,6 +98,7 @@ $(document).ready(function(){
 		ctx.strokeRect(0, 0, w, h);
 
 		snake = [];
+		dir = "right";
 		make_snake();
 		/*
 		if (snake[snake.length-1].x >= w)
@@ -117,6 +118,12 @@ $(document).ready(function(){
         paint_cell(fw,fh);
     }
 
-    //$(document).keydown(e)
+    $(document).keydown(function(e){
+    	console.log(e.keyCode);
+    	if (e.keyCode===37 && dir!=="right") dir="left";
+    	if (e.keyCode===38 && dir!=="down") dir="up";
+    	if (e.keyCode===39 && dir!=="left") dir="right";
+    	if (e.keyCode===40 && dir!=="up") dir="down";
+    });
 	
 })
