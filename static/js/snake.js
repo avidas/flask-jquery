@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	//Canvas stuff
 	var canvas = $("#canvas")[0];
@@ -11,12 +10,18 @@ $(document).ready(function(){
 	var score;
 	var snake=[]; //array representing snake coordinates
 
+	//Draw canvas
+	ctx.fillStyle = "white";
+	ctx.fillRect(0, 0, w, h);
+	ctx.strokeStyle = "black";
+	ctx.strokeRect(0, 0, w, h);
+
+
 	function paint_cell(x,y)
 	{
-		//Draw canvas
 		ctx.fillStyle = "blue";
+		console.log(x,y);
 		ctx.fillRect(x*cw, y*cw, cw, cw);
-		console.log(x*cw);
 		ctx.strokeStyle = "white";
 		ctx.strokeRect(x*cw, y*cw, cw, cw);
 	}
@@ -38,10 +43,19 @@ $(document).ready(function(){
 		paint_cell(snake[i].x,snake[i].y)
 	}
 
-	//Draw canvas
-	ctx.fillStyle = "white";
-	ctx.fillRect(0, 0, w, h);
-	ctx.strokeStyle = "black";
-	ctx.strokeRect(0, 0, w, h);
-	make_snake();
+	function game()
+	{
+		setInterval(make_snake(), 60);
+		make_food();
+	}
+	game();
+    
+    function make_food()
+    {
+        fw = Math.floor((Math.random()*w/10)+1);
+        fh = Math.floor((Math.random()*h/10)+1);
+        console.log(fw,fh);
+        paint_cell(fw,fh);
+    }
+	
 })
