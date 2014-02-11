@@ -5,6 +5,7 @@ $(document).ready(function(){
 	var w = $("#canvas").width();
 	var h = $("#canvas").height();
 	
+	//var state = "running";
 	var cw = 10;
 	var snake=[]; //array representing snake coordinates
 
@@ -105,6 +106,7 @@ $(document).ready(function(){
 		snake = [];
 		dir = "right";
 		make_snake();
+		make_food(true);
 		handle = setInterval(game_logic, 50);
 
 	}
@@ -118,6 +120,7 @@ $(document).ready(function(){
     }
 
     $(document).keydown(function(e){
+    	//if (e.keyCode===32) dir="paused";
     	if (e.keyCode===37 && dir!=="right") dir="left";
     	if (e.keyCode===38 && dir!=="down") dir="up";
     	if (e.keyCode===39 && dir!=="left") dir="right";
