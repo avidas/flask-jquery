@@ -5,9 +5,10 @@ $(document).ready(function(){
 	var w = $("#canvas").width();
 	var h = $("#canvas").height();
 	
-	//var state = "running";
+	var state = "running";
 	var cw = 10;
 	var snake=[]; //array representing snake coordinates
+	var score;
 
 	var fw = Math.floor((Math.random()*w/10)+1);
 	var fh = Math.floor((Math.random()*h/10)+1);
@@ -82,6 +83,7 @@ $(document).ready(function(){
 		}
 		else if (new_pos_x===fw && new_pos_y===fh)
 		{
+			score++;
 			make_food(true);
 			snake.push({x: new_pos_x, y: new_pos_y});
 			draw_snake();
@@ -92,12 +94,16 @@ $(document).ready(function(){
 			snake.push({x: new_pos_x, y: new_pos_y});
 			draw_snake();
 		}
+		var score_text = "Score: " + score;
+		ctx.fillText(score_text, 5, h-5);
+
 	}
 
 
 	function game()
 	{
 		//Draw canvas
+		score = 0;
 		ctx.fillStyle = "white";
 		ctx.fillRect(0, 0, w, h);
 		ctx.strokeStyle = "black";
@@ -120,7 +126,7 @@ $(document).ready(function(){
     }
 
     $(document).keydown(function(e){
-    	//if (e.keyCode===32) dir="paused";
+    	if (e.keyCode===32) dir="paused";
     	if (e.keyCode===37 && dir!=="right") dir="left";
     	if (e.keyCode===38 && dir!=="down") dir="up";
     	if (e.keyCode===39 && dir!=="left") dir="right";
