@@ -125,6 +125,12 @@ $(document).ready(function(){
         paint_cell(fw,fh);
     }
 
+    //Create special food with higher points, but also could end game
+    function make_special()
+    {
+
+    }
+
     $(document).keydown(function(e){
     	if (e.keyCode===32) dir="paused";
     	if (e.keyCode===37 && dir!=="right") dir="left";
