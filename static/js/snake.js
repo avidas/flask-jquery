@@ -9,6 +9,7 @@ $(document).ready(function(){
 	var cw = 10;
 	var snake=[]; //array representing snake coordinates
 	var score;
+	var level;
 
 	var fw = Math.floor((Math.random()*w/10)+1);
 	var fh = Math.floor((Math.random()*h/10)+1);
@@ -97,6 +98,9 @@ $(document).ready(function(){
 		var score_text = "Score: " + score;
 		ctx.fillText(score_text, 5, h-5);
 
+		var level = "Level: " + level;
+		ctx.fillText(level, w-50, h-5);
+
 	}
 
 
@@ -109,11 +113,12 @@ $(document).ready(function(){
 		ctx.strokeStyle = "black";
 		ctx.strokeRect(0, 0, w, h);
 
+		level = 3;
 		snake = [];
 		dir = "right";
 		make_snake();
 		make_food(true);
-		handle = setInterval(game_logic, 50);
+		handle = setInterval(game_logic, (level+2)*10);
 
 	}
 	game();
@@ -133,6 +138,11 @@ $(document).ready(function(){
 
     $(document).keydown(function(e){
     	if (e.keyCode===32) dir="paused";
+    	if (e.keyCode===49) level=1;
+    	if (e.keyCode===50) level=2;
+    	if (e.keyCode===51) level=3;
+    	if (e.keyCode===52) level=4;
+    	if (e.keyCode===53) level=5;
     	if (e.keyCode===37 && dir!=="right") dir="left";
     	if (e.keyCode===38 && dir!=="down") dir="up";
     	if (e.keyCode===39 && dir!=="left") dir="right";
