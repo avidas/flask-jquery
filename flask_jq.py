@@ -1,8 +1,11 @@
 from flask import Flask, jsonify, render_template, request, current_app, redirect, flash
 from functools import wraps
+from flask.ext.socketio import SocketIO, emit
 import json
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'not_so_secret'
+socketio = SocketIO(app)
 
 def jsonp(f):
 	'''Wrap JSONified output for JSONP'''
@@ -42,6 +45,9 @@ def add_numbers():
     b = request.args.get('b', 0, type=int)
     return jsonify(result=a + b)
 
+@socketio.on('test event')
+def test_message(message):
+    emit('test response', {'data': 'received'})
 
 @app.route('/')
 def index():
