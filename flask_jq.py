@@ -45,13 +45,19 @@ def add_numbers():
     b = request.args.get('b', 0, type=int)
     return jsonify(result=a + b)
 
+#Sending
 @socketio.on('test event')
 def test_message(message):
     emit('test response', {'data': 'received'})
+
+#Receiving
+@socketio.on('test receive')
+def test_receive(message):
+    print('received json: ' + str(json))
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run('0.0.0.0',port=4000)
+    socketio.run('0.0.0.0',port=4000)
